@@ -180,7 +180,6 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Total Balance Text
           Text(
             'Total Balance',
             style: GoogleFonts.poppins(
@@ -190,7 +189,6 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 8),
 
-          // Balance Amount
           Text(
             '\$12,750.80',
             style: GoogleFonts.poppins(
@@ -201,7 +199,6 @@ class _HomePageState extends State<HomePage> {
           ),
           const SizedBox(height: 20),
 
-          // Action Buttons Row
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [

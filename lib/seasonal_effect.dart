@@ -62,7 +62,6 @@ class _SeasonalEffectState extends State<SeasonalEffect>
   Future<void> _loadSnowflakeImages() async {
     _snowflakeImage = await loadImageFromAsset(widget.assetPath);
 
-    // Force a rebuild once images are loaded
     if (mounted) setState(() {});
   }
 
@@ -81,7 +80,6 @@ class _SeasonalEffectState extends State<SeasonalEffect>
       (index) => Particle(
         x: _random.nextDouble(),
         y: -0.2 - _random.nextDouble() * 0.8,
-        // Start above the visible area
         size: _random.nextDouble() *
                 (config.sizeRange.max - config.sizeRange.min) +
             config.sizeRange.min,
@@ -90,7 +88,6 @@ class _SeasonalEffectState extends State<SeasonalEffect>
             config.speedRange.min,
         angle: _random.nextDouble() * pi * 2,
         spinSpeed: (_random.nextDouble() - 0.5) * 0.02,
-        // Reduced spin speed
       ),
     );
   }
@@ -103,9 +100,8 @@ class _SeasonalEffectState extends State<SeasonalEffect>
 
   @override
   Widget build(BuildContext context) {
-    // Only build if images are loaded
     if (_snowflakeImage == null) {
-      return const SizedBox.shrink(); // Or a loading indicator
+      return const SizedBox.shrink();
     }
 
     return AnimatedBuilder(
@@ -141,15 +137,12 @@ class ParticlePainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     for (var particle in particles) {
-      // Update particle position with slower movement
-      particle.y += particle.speed * 0.003; // Reduced movement speed
+      particle.y += particle.speed * 0.003;
       particle.x += sin(particle.angle) * config.windVariation * 0.002;
       particle.angle += particle.spinSpeed;
 
-      // Reset particle when it goes off screen
       if (particle.y > 1.2) {
-        // Allow to go slightly below screen
-        particle.y = -0.2; // Reset above screen
+        particle.y = -0.2;
         particle.x = Random().nextDouble();
       }
 
@@ -162,11 +155,9 @@ class ParticlePainter extends CustomPainter {
       canvas.translate(point.dx, point.dy);
       canvas.rotate(particle.angle);
 
-      // Draw image-based snowflake
       final image = snowflakeImage;
       final paint = Paint();
 
-      // Calculate scale based on particle size
       final scale = particle.size / image.width;
 
       canvas.scale(scale);
@@ -180,7 +171,6 @@ class ParticlePainter extends CustomPainter {
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => true;
 }
-// ... Rest of the classes (Particle, SeasonConfig, Range) remain the same ...
 
 @override
 bool shouldRepaint(CustomPainter oldDelegate) => true;

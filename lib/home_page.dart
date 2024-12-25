@@ -92,19 +92,8 @@ class _HomePageState extends State<HomePage> {
               ),
             ],
           ),
-          Row(
-            children: [
-              IconButton(
-                icon: Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.white,
-                  size: 28,
-                ),
-                onPressed: () {},
-              ),
-              AnimatedThemeToggle(isDarkMode: isDarkMode, onThemeToggle:  widget.onThemeToggle),
-            ],
-          ),
+          AnimatedThemeToggle(
+              isDarkMode: isDarkMode, onThemeToggle: widget.onThemeToggle),
         ],
       ),
     );
@@ -188,7 +177,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 8),
-
           Text(
             '\$12,750.80',
             style: GoogleFonts.poppins(
@@ -198,7 +186,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           const SizedBox(height: 20),
-
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -556,4 +543,3 @@ Widget _buildBottomNavBar(bool isDarkMode) {
     ],
   );
 }
-
